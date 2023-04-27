@@ -142,19 +142,39 @@ void imprimir_tablero(int[,] tablero, bool es_tablero_jugador)
 
     Dictionary<int, string> simbolos_jugador = new Dictionary<int, string>()
     {
-        { 0, "~" },
+        { 0, "󰖌" },
         { 1, "󰠳" },
-        { -1, "*" },
-        { -2, "x" },
+        { -1, "" },
+        { -2, "󱎘" },
     };
 
     Dictionary<int, string> simbolos_maquina = new Dictionary<int, string>()
     {
-        { 0, "~" },
-        { 1, "~" },
-        { -1, "*" },
-        { -2, "x" },
+        { 0, "󰖌" },
+        { 1, "󰖌" },
+        { -1, "" },
+        { -2, "󱎘" },
     };
+
+
+    //Iconos friendly
+
+    //Dictionary<int, string> simbolos_jugador = new Dictionary<int, string>()
+    //{
+    // { 0, "~" },
+    // { 1, "B" },
+    //  { -1, "*" },
+    //   { -2, "x" },
+    // };
+
+    // Dictionary<int, string> simbolos_maquina = new Dictionary<int, string>()
+    // {
+    //   { 0, "~" },
+    //  { 1, "~" },
+    //  { -1, "*" },
+    //  { -2, "x" },
+    // };
+
 
     Console.Write("  ");
     for (int c = 0; c < tablero.GetLength(1); c++)
