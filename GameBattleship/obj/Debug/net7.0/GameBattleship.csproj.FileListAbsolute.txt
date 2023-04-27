@@ -1,0 +1,15 @@
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/bin/Debug/net7.0/GameBattleship
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/bin/Debug/net7.0/GameBattleship.deps.json
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/bin/Debug/net7.0/GameBattleship.runtimeconfig.json
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/bin/Debug/net7.0/GameBattleship.dll
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/bin/Debug/net7.0/GameBattleship.pdb
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.csproj.AssemblyReference.cache
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.GeneratedMSBuildEditorConfig.editorconfig
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.AssemblyInfoInputs.cache
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.AssemblyInfo.cs
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.csproj.CoreCompileInputs.cache
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.dll
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/refint/GameBattleship.dll
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.pdb
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/GameBattleship.genruntimeconfig.cache
+/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/obj/Debug/net7.0/ref/GameBattleship.dll

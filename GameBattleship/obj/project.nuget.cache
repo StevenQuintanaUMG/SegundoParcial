@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "scsCJFFpR0emg74cfk7KcyXfvmGhhjV0/Ko2uKXRWTkpvynz0I4qwt2rcQAxLdbv8e2hofNPOTEd/aVcn4AxWw==",
+  "success": true,
+  "projectFilePath": "/home/steven/Developer/umg/csharp/BattleShip/GameBattleship/GameBattleship.csproj",
+  "expectedPackageFiles": [
+    "/home/steven/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.4/microsoft.aspnetcore.app.ref.7.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
