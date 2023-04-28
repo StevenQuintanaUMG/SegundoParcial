@@ -86,9 +86,9 @@ void colocar_barcos()
 {
     int[][] tamanos_barcos = new int[][]
     {
-        new int[] { 2, 3, 4 }, // Fácil
-        new int[] { 2, 3, 3, 4, 4, 1, 2 }, // Normal
-        new int[] { 1, 2, 3, 3, 4, 5, 8, 6, 4 } // DarkSouls
+        new int[] { 1, 2, 3, 4 }, // Fácil
+        new int[] { 2, 3, 3, 4, 4, 1, 2, 6, 8, 9, 5 }, // Normal
+        new int[] { 1, 2, 3, 3, 4, 5, 8, 6, 4, 10, 4, 6, 3, 4, 6, 7, 7, 10 } // DarkSouls
     };
 
     // Colocar barcos para el jugador y para la máquina
@@ -156,7 +156,6 @@ void imprimir_tablero(int[,] tablero, bool es_tablero_jugador)
         { -2, "󱎘" },
     };
 
-
     //Iconos friendly
 
     //Dictionary<int, string> simbolos_jugador = new Dictionary<int, string>()
@@ -202,17 +201,17 @@ void imprimir_tablero(int[,] tablero, bool es_tablero_jugador)
     }
 }
 
-void ingreso_coordenadas()
+void ataque_jugador()
 {
     bool control = false,
-        repetir_ataque_jugador = false;
+        repetir_ataque = true;
 
-    while (!repetir_ataque_jugador)
+    while (repetir_ataque)
     {
         uint fila = 0,
             columna = 0; // inicializar fila y columna con valor cero
 
-        repetir_ataque_jugador = false;
+        repetir_ataque = true;
         control = false;
 
         Console.Clear();
@@ -267,7 +266,7 @@ void ingreso_coordenadas()
             imprimir_tablero(tablero_maquina, false);
             Console.WriteLine("\nCon suerte le diste a un pescado");
 
-            repetir_ataque_jugador = true;
+            repetir_ataque = false;
         }
     }
 
@@ -279,14 +278,14 @@ void ingreso_coordenadas()
 void ataque_maquina()
 {
     bool control = false,
-        repetir_ataque = false;
+        repetir_ataque = true;
     Console.Clear();
 
-    while (!repetir_ataque)
+    while (repetir_ataque)
     {
         int fila = 0,
             columna = 0; // inicializar fila y columna con valor cero
-        repetir_ataque = false;
+        repetir_ataque = true;
         Console.Clear();
 
         while (!control)
@@ -320,7 +319,7 @@ void ataque_maquina()
             imprimir_tablero(tablero_jugador, true);
             Console.WriteLine("\nNo te dio el pibe");
 
-            repetir_ataque = true;
+            repetir_ataque = false;
         }
     }
 
@@ -347,7 +346,7 @@ void jugar()
     while (!jugador_gana && !maquina_gana)
     {
         Console.WriteLine("TU TURNO\n");
-        ingreso_coordenadas();
+        ataque_jugador();
         jugador_gana = verificar_ganador(tablero_maquina);
 
         Console.WriteLine("TURNO DE LA MAQUINA\n");
@@ -358,7 +357,7 @@ void jugar()
     if (jugador_gana)
     {
         Console.WriteLine(
-            @"\n\n
+            @"
 ▒█░░▒█ ▒█▀▀▀█ ▒█░▒█ 　 ▒█░░▒█ ▀█▀ ▒█▄░▒█ 　 ▄ ▀▄ 
 ▒█▄▄▄█ ▒█░░▒█ ▒█░▒█ 　 ▒█▒█▒█ ▒█░ ▒█▒█▒█ 　 ░ ░█ 
 ░░▒█░░ ▒█▄▄▄█ ░▀▄▄▀ 　 ▒█▄▀▄█ ▄█▄ ▒█░░▀█ 　 ▀ ▄▀"
@@ -367,7 +366,7 @@ void jugar()
     else
     {
         Console.WriteLine(
-            @"\n\n
+            @"
 ▒█░░▒█ ▒█▀▀▀█ ▒█░▒█ 　 ▒█░░░ ▒█▀▀▀█ ▒█▀▀▀█ ▒█▀▀▀█ 　 ▄ ▄▀ 
 ▒█▄▄▄█ ▒█░░▒█ ▒█░▒█ 　 ▒█░░░ ▒█░░▒█ ░▀▀▀▄▄ ░▀▀▀▄▄ 　 ░ █░ 
 ░░▒█░░ ▒█▄▄▄█ ░▀▄▄▀ 　 ▒█▄▄█ ▒█▄▄▄█ ▒█▄▄▄█ ▒█▄▄▄█ 　 ▀ ▀▄"
@@ -380,7 +379,7 @@ void jugar()
         {
             for (int c = 0; c < tablero.GetLength(1); c++)
             {
-                if (tablero[f, c] != 0 && tablero[f, c] != -1)
+                if (tablero[f, c] == 1)
                 {
                     return false;
                 }
@@ -389,6 +388,35 @@ void jugar()
 
         return true;
     }
+}
+
+void salir()
+{
+    Console.Clear();
+    Console.WriteLine("\nGracias por usar el programa - Vuelve Pronto\n");
+    Console.WriteLine(
+        @"
+          ⡠⠲⠠⠀⢠⠂⡴⠀⡴⠂⡔⠀⠀⠀⠀⠀⢀⠀⠀⠀⢆⠀⠀⠀⡆⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣐⠪⣁⠣⠤⣇⡮⢁⣺⠋⡐⠄⠀⠀⠀⢀⢀⢲⠀⠀⠀⠈⣆⠀⠀⠈⡀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⢣⡽⢀⡛⣬⢋⣾⡍⣰⡉⠀⠀⠀⠠⢎⠚⣸⠀⠀⠀⠰⢸⡀⠀⠀⡇⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⢰⡈⡇⢸⢷⣿⣾⣜⡳⢩⠁⠀⢀⠝⡭⠉⢩⣿⠀⠀⠐⠒⣼⡋⣴⢶⡧⡁
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣷⣹⢸⣸⣿⣿⣿⠃⣿⠀⡠⢊⠼⣤⣴⣼⣇⡇⣧⠀⠀⣿⢫⢭⡿⡇⠁
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⣮⣼⠛⡛⡻⠟⠠⣈⠜⢁⠊⢰⣿⣿⣿⣿⢱⡌⠀⠸⣏⢷⡷⠁⠃⠀
+⠀⠀⠀⢠⠀⠒⠒⠀⠤⠄⠿⣟⡘⠀⠀⠁⠀⠀⠏⠀⠀⠀⠘⡉⡽⡻⢃⡾⠀⢀⢻⣽⠞⠘⠀⢰⠀
+⠀⠀⠀⡌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠒⠂⠠⠤⠀⢀⣀⡁⠠⡺⠁⠠⢑⡲⠁⠀⠀⡇⠈⡀
+⠀⠀⢀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⢠⣶⢫⣛⠀⠀⠀⢸⡀⠇
+⠀⠀⡈⠀⠀⡶⠶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣈⣋⠶⣏⡄⠀⠀⠸⣧⠀
+⠠⠩⡙⠀⢰⣇⣠⡼⠀⠀⢀⡴⣿⠀⠀⣰⠀⢀⣤⠀⠀⠀⠀⠀⠀⢀⠀⠻⣼⠣⡽⣡⠀⠀⠀⡴⡆
+⠐⠠⠀⠀⣾⣀⣉⡷⠀⣤⠿⠤⣿⠀⢀⣯⠶⠋⠀⠀⢀⣴⣿⠀⠀⢠⠈⠷⣧⣛⠴⣫⠆⠀⠀⢠⠃
+⠈⡇⠀⠀⠈⠉⠉⠀⠘⠃⠀⠀⢿⠀⣸⠛⢧⡀⠀⣠⠾⠥⣿⠀⠀⢰⡁⠄⢗⠻⣩⣓⣻⡄⠀⠠⠆
+⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠈⠙⠘⠋⠀⠀⢿⠀⠀⢀⡆⠀⢸⣏⡳⣆⠧⢿⣆⠀⠀
+⡌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⢷⠀⠸⠽⣺⡌⣏⠶⣯⣆⠀
+⠑⠒⠀⠠⠄⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢟⡌⠛⡋⠍⡽⡿⣌⢳⡏⣼⡇
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠝⠀⠒⠂⡤⠤⠀⣀⡀⠀⠀⠀⠀⠀⠀⢰⡶⣬⣆⠱⢨⣟⠶⣌⢳⠇⠡⡇
+⠀⠀⠀⠀⠀⠀⢀⣔⣃⡀⠀⠀⠀⡇⢀⠀⠀⠺⣈⣍⣄⣶⣒⣠⡤⣦⣐⣠⣃⣹⣉⣺⣬⡟⠀⣰⠀
+                "
+    );
+    Environment.Exit(0);
 }
 
 void menu()
@@ -430,6 +458,7 @@ void menu()
                 ╚═════╝░╚═╝╚═╝░░░░░╚═╝░╚════╝░░╚═════╝░╚══════╝░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░"
             );
 
+            bool jugar_otravez = true;
             Console.WriteLine("\n1. Fácil");
             Console.WriteLine("2. Normal");
             Console.WriteLine("3. DarkSouls");
@@ -444,37 +473,36 @@ void menu()
 
             Console.Clear();
 
-            jugar();
+            while (jugar_otravez)
+            {
+                uint op = 0;
 
+                jugar();
+
+                Console.WriteLine("\nQuieres volver a jugar?");
+                Console.WriteLine("\n1. Si");
+                Console.WriteLine("\n2. No");
+
+                do
+                {
+                    Console.Write("\n> ");
+                } while (!uint.TryParse(Console.ReadLine(), out op) || (op <= 0) || (op > 2));
+
+                if (op == 1)
+                {
+                    jugar_otravez = true;
+                }
+                else
+                {
+                    jugar_otravez = false;
+                    salir();
+                }
+            }
             break;
 
         case 2:
 
-            Console.Clear();
-            Console.WriteLine("\nGracias por usar el programa - Vuelve Pronto\n");
-            Console.WriteLine(
-                @"
-          ⡠⠲⠠⠀⢠⠂⡴⠀⡴⠂⡔⠀⠀⠀⠀⠀⢀⠀⠀⠀⢆⠀⠀⠀⡆⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⣐⠪⣁⠣⠤⣇⡮⢁⣺⠋⡐⠄⠀⠀⠀⢀⢀⢲⠀⠀⠀⠈⣆⠀⠀⠈⡀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⢣⡽⢀⡛⣬⢋⣾⡍⣰⡉⠀⠀⠀⠠⢎⠚⣸⠀⠀⠀⠰⢸⡀⠀⠀⡇⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠈⢰⡈⡇⢸⢷⣿⣾⣜⡳⢩⠁⠀⢀⠝⡭⠉⢩⣿⠀⠀⠐⠒⣼⡋⣴⢶⡧⡁
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣷⣹⢸⣸⣿⣿⣿⠃⣿⠀⡠⢊⠼⣤⣴⣼⣇⡇⣧⠀⠀⣿⢫⢭⡿⡇⠁
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⣮⣼⠛⡛⡻⠟⠠⣈⠜⢁⠊⢰⣿⣿⣿⣿⢱⡌⠀⠸⣏⢷⡷⠁⠃⠀
-⠀⠀⠀⢠⠀⠒⠒⠀⠤⠄⠿⣟⡘⠀⠀⠁⠀⠀⠏⠀⠀⠀⠘⡉⡽⡻⢃⡾⠀⢀⢻⣽⠞⠘⠀⢰⠀
-⠀⠀⠀⡌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠒⠂⠠⠤⠀⢀⣀⡁⠠⡺⠁⠠⢑⡲⠁⠀⠀⡇⠈⡀
-⠀⠀⢀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⢠⣶⢫⣛⠀⠀⠀⢸⡀⠇
-⠀⠀⡈⠀⠀⡶⠶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣈⣋⠶⣏⡄⠀⠀⠸⣧⠀
-⠠⠩⡙⠀⢰⣇⣠⡼⠀⠀⢀⡴⣿⠀⠀⣰⠀⢀⣤⠀⠀⠀⠀⠀⠀⢀⠀⠻⣼⠣⡽⣡⠀⠀⠀⡴⡆
-⠐⠠⠀⠀⣾⣀⣉⡷⠀⣤⠿⠤⣿⠀⢀⣯⠶⠋⠀⠀⢀⣴⣿⠀⠀⢠⠈⠷⣧⣛⠴⣫⠆⠀⠀⢠⠃
-⠈⡇⠀⠀⠈⠉⠉⠀⠘⠃⠀⠀⢿⠀⣸⠛⢧⡀⠀⣠⠾⠥⣿⠀⠀⢰⡁⠄⢗⠻⣩⣓⣻⡄⠀⠠⠆
-⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠈⠙⠘⠋⠀⠀⢿⠀⠀⢀⡆⠀⢸⣏⡳⣆⠧⢿⣆⠀⠀
-⡌⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⢷⠀⠸⠽⣺⡌⣏⠶⣯⣆⠀
-⠑⠒⠀⠠⠄⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢟⡌⠛⡋⠍⡽⡿⣌⢳⡏⣼⡇
-⠀⠀⠀⠀⠀⠀⠀⠀⠈⠝⠀⠒⠂⡤⠤⠀⣀⡀⠀⠀⠀⠀⠀⠀⢰⡶⣬⣆⠱⢨⣟⠶⣌⢳⠇⠡⡇
-⠀⠀⠀⠀⠀⠀⢀⣔⣃⡀⠀⠀⠀⡇⢀⠀⠀⠺⣈⣍⣄⣶⣒⣠⡤⣦⣐⣠⣃⣹⣉⣺⣬⡟⠀⣰⠀
-                "
-            );
-            Environment.Exit(0);
+            salir();
 
             break;
     }
